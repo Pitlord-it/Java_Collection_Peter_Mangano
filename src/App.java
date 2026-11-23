@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -100,6 +101,80 @@ public class App {
         }
         System.out.println(" ");
         scanner.close();
+
+
+
+        // 3-Creare una lista ed eliminare gli elementi duplicati
+
+
+        System.out.println("\nTerzo esercizio:\nCreare una lista ed eliminare gli elementi duplicati");
+
+        //  creiamo un arraylist
+        List<Person> persons = new ArrayList<>();
+
+        persons.add(new Person("Luca", "Barolo", 45));
+        persons.add(new Person("Marta", "Rossi", 30));
+        persons.add(new Person("Luca", "Barolo", 45));
+        persons.add(new Person("Anna", "Verdi", 21));
+        persons.add(new Person("Marta", "Rossi", 30));
+
+
+        System.out.println("\nArray originale con elementi duplicati:");
+        for (Person person : persons) {
+
+            System.out.println(person.getName() + " " + person.getSurname() + " " + person.getAge());
+
+        }
+
+        // creiamo un oggetto Iterator per ciclare l'arraylist e una lista di appoggio dove salveremo gli elementi unici incontriamo
+         Iterator<Person> iterator = persons.iterator();
+        List<Person> uniquePersons = new ArrayList<>();
+
+
+
+        // con questo ciclo basato sull'iterator rimuoviamo dalla lista persons gli elementi duplicati 
+    while (iterator.hasNext()) {
+    Person person = iterator.next();
+
+    if (uniquePersons.contains(person)) {
+        iterator.remove();
+    } else {
+        uniquePersons.add(person);
+    }
+    }
+
+    System.out.println("\nArray senza elementi duplicati:");
+        for (Person person : persons) {
+
+            System.out.println(person.getName() + " " + person.getSurname() + " " + person.getAge());
+
+        }
+     System.out.println(" ");
+
+
+
+
+
+    //  Extra 4: crea una classse generica 
+    System.out.println("\nExtra, Quarto esercizio:\nCrea una classe generica");
+    GenericClass<String> general = new GenericClass<String>("Questà è una stringa stampata tramite classe generica");
+    System.out.println(general.getInput());
+    GenericClass<Integer> generic = new GenericClass<Integer>(22);
+    System.out.println("Numero stampato tramite classe generica: " + generic.getInput());
+    System.out.println(" ");
+
+
+//  Extra 5: crea un metodo generico
+    System.out.println("\nExtra, Quinto esercizio:\nCrea un metodo generico");
+
+    GenMethodClass<String, Integer> pair1 = new GenMethodClass<String, Integer>("Hello", 3);
+    System.out.println("I dati della classe con metodo generico sono: " + pair1.getData1() + "  " + pair1.getData2());
+
+    GenMethodClass<Double, String> pair2 = new GenMethodClass<Double, String>(123.0, "MySql");
+    System.out.println("I dati della classe con metodo generico sono: " + pair2.getData1() + "  " + pair2.getData2());
+    
+    System.out.println(" ");
+
     }
 }
 

@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -67,6 +69,7 @@ public class App {
 
         System.out.println("\nLista delle persone:");
 
+        // creo un solo oggetto Scanner per l'intero programma, si chiude alla fine dell'extra 2, per evitare conflitti
         Scanner scanner = new Scanner(System.in);
         // scorriamo l'Arraylist in base all'indice. Size restituisce il numero di oggetti presenti, get restituisce il singolo elemento
         for (int i = 0; i < ppl.size(); i++) {
@@ -104,7 +107,7 @@ public class App {
             System.out.println(person.getName() + " " + person.getSurname() + " " + person.getAge());
         }
         System.out.println(" ");
-        scanner.close();
+       
 
 
 
@@ -186,7 +189,28 @@ public class App {
         System.out.println(" ");
 
 
+       
+        // Extra 2- Creare una mappa con degli oggetti, chiedere all’utente di inserire 
+        // una chiave e provare a cercare l’oggetto corrispondente nella mappa
+        System.out.println("\nExtra, Secondo Esercizio:\nCreare una mappa contenente gli oggetti book e cercarli tramite chiave inserita");
+        Map<String, Book> biblioteca = new HashMap<>();
 
+        biblioteca.put("11", new Book("11", "Il nome della rosa", "Umberto Eco"));
+        biblioteca.put("22", new Book("22", "Il visconte dimezzato", "Italo Calvino"));
+        biblioteca.put("33", new Book("33", "Il Fu Mattia Pascal", "Luigi Pirandello"));
+
+        
+        System.out.println("\nInserisci il codice da cercare (11-22-33): ");
+        String chiaveLibro = scanner.next();
+
+        if (biblioteca.containsKey(chiaveLibro)) {
+            Book trovato = biblioteca.get(chiaveLibro);
+            System.out.println("\nLibro trovato: " + trovato.getCode() + " - " + trovato.getTitle() + " - " + trovato.getAuthor() + "\n");
+        } else {
+            System.out.println("\nNessun libro trovato con chiave '" + chiaveLibro + "'.\n");
+        }
+
+        scanner.close();
 
 
 

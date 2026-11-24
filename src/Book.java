@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-// classe Book per gli esercizi extra 1 ed extra 2
+// classe Book per gli esercizi extra 1 ed extra 2 ed extra 3
 public class Book {
     private String code;
     private String title;

@@ -195,6 +195,7 @@ public class App {
         System.out.println("\nExtra, Secondo Esercizio:\nCreare una mappa contenente gli oggetti book e cercarli tramite chiave inserita");
         Map<String, Book> biblioteca = new HashMap<>();
 
+        // codice libro e chiave oggetto sono uguali 
         biblioteca.put("11", new Book("11", "Il nome della rosa", "Umberto Eco"));
         biblioteca.put("22", new Book("22", "Il visconte dimezzato", "Italo Calvino"));
         biblioteca.put("33", new Book("33", "Il Fu Mattia Pascal", "Luigi Pirandello"));
@@ -210,11 +211,48 @@ public class App {
             System.out.println("\nNessun libro trovato con chiave '" + chiaveLibro + "'.\n");
         }
 
+        
+
+    //    Extra 3- Scrivere un programma che dichiari una mappa con chiave di tipo string e oggetto a vostra discrezione che prenda
+    //    in input dei valori, crei un oggetto e aggiunga l’oggetto alla mappa. 
+    //    Dopo provare a rimuovere l’oggetto e cercare nuovamente l’oggetto nella mappa
+
+
+
+        System.out.println("\nExtra, Terzo Esercizio:\nCreare una mappa aggiungere un oggetto inserito dall'utente, rimuoverlo e cercarlo\n");
+        // creazione mappa e oggetto da inserire 
+        Map<String, Book> mappaLibri = new HashMap<>();
+        
+
+        // input dei valori e creazione dell'oggetto
+        System.out.print("Inserisci la chiave/codice libro: ");
+        String codice = scanner.next();
+
+        System.out.print("Inserisci il titolo: ");
+        String titolo = scanner.next();
+
+        System.out.print("Inserisci l'autore: ");
+        String autore = scanner.next();
+
+        Book nuovoLibro = new Book(codice, titolo, autore);
+
+        // aggiunta alla mappa e ricerca dell'oggetto nella map con get, e infine stampa'
+        mappaLibri.put(codice, nuovoLibro);
+        System.out.println("\nAggiunta libro completata");
+        Book libroAggiunto = mappaLibri.get(codice);
+        System.out.println("Risultato containsKey('" + codice + "'): " + mappaLibri.containsKey(codice));
+        System.out.println("Libro aggiunto cercato con metodo get: " + libroAggiunto.getCode() + " - " + libroAggiunto.getTitle() + " - " + libroAggiunto.getAuthor() + "\n");
+
+        // rimozione dell'oggeto e nuova ricerca con la chiave inserita in precedenza
+        mappaLibri.remove(codice);
+        System.out.println("Libro rimosso");
+
+        System.out.println("\nRicerca dopo la rimozione:");
+        System.out.println("Risultato booleano di containsKey('" + codice + "'): " + mappaLibri.containsKey(codice));
+        System.out.println("Risultato oggetto di get('" + codice + "'): " + mappaLibri.get(codice));
+        System.out.println(" ");
+
         scanner.close();
-
-
-
-
 
 
 

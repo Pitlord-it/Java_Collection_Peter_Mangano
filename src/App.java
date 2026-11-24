@@ -1,7 +1,11 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
+
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -27,7 +31,7 @@ public class App {
         List<Person> adults = new ArrayList<Person>();
 
         // assegnazione delle persone maggiorenni all'array aduts 
-        System.out.println("\nArray originale:");
+        System.out.println("\nLista originale:");
         for (Person person : people) {
 
             if (person.getAge() >= 18) {
@@ -38,7 +42,7 @@ public class App {
 
         }
 
-        System.out.println("\nArray con le sole persone maggiorenni:");
+        System.out.println("\nLista con le sole persone maggiorenni:");
         for (Person person : adults) {
             System.out.println(person.getName() + " " + person.getSurname() + " " + person.getAge());
         }
@@ -109,8 +113,8 @@ public class App {
 
         System.out.println("\nTerzo esercizio:\nCreare una lista ed eliminare gli elementi duplicati");
 
-        //  creiamo un arraylist
-        List<Person> persons = new ArrayList<>();
+        //  creiamo una linkedlist
+        List<Person> persons = new LinkedList<>();
 
         persons.add(new Person("Luca", "Barolo", 45));
         persons.add(new Person("Marta", "Rossi", 30));
@@ -119,16 +123,16 @@ public class App {
         persons.add(new Person("Marta", "Rossi", 30));
 
 
-        System.out.println("\nArray originale con elementi duplicati:");
+        System.out.println("\nLista originale con elementi duplicati:");
         for (Person person : persons) {
 
             System.out.println(person.getName() + " " + person.getSurname() + " " + person.getAge());
 
         }
 
-        // creiamo un oggetto Iterator per ciclare l'arraylist e una lista di appoggio dove salveremo gli elementi unici incontriamo
+        // creiamo un oggetto Iterator per ciclare la linkedlist e una lista di appoggio dove salveremo gli elementi unici incontriamo
          Iterator<Person> iterator = persons.iterator();
-        List<Person> uniquePersons = new ArrayList<>();
+        List<Person> uniquePersons = new LinkedList<>();
 
 
 
@@ -143,13 +147,51 @@ public class App {
     }
     }
 
-    System.out.println("\nArray senza elementi duplicati:");
+    System.out.println("\nLista senza elementi duplicati:");
         for (Person person : persons) {
 
             System.out.println(person.getName() + " " + person.getSurname() + " " + person.getAge());
 
         }
      System.out.println(" ");
+
+
+
+    
+    //   Extra 1- Creare una Set che contenga degli oggetti di una classe creata da voi 
+    // che non ammetta ripetizioni ( sovrascrivendo i metodi equals e hashcode )
+
+         System.out.println("\nExtra, Primo esercizio:\nCreare un catalogo libri con un Set che non ammette duplicati\n");
+        Set<Book> catalogo = new HashSet<>();
+
+        // andiamo a creare 3 oggetti book, il primo e secondo uguali
+        Book l1 = new Book("1978-8804668237", "Il nome della rosa", "Umberto Eco");
+        Book l2 = new Book("1978-8804668237", "Il nome della rosa", "Umberto Eco");
+        Book l3 = new Book("2978-8806216023", "1984", "George Orwell");
+
+        System.out.println("l1 equals l2: " + l1.equals(l2) );
+        System.out.println("hashcode l1 = hashcode l2: " + (l1.hashCode() == l2.hashCode()) + "\n");
+       
+
+        // il secondo libro non viene inserito perché uguale come hascode e attributi al primo 
+        System.out.println("Aggiunto l1: " + catalogo.add(l1)); // true
+        System.out.println("Aggiunto l2 (uguale a l2): " + catalogo.add(l2)); // false, non ammesso
+        System.out.println("Aggiunto l3: " + catalogo.add(l3)); // true
+        System.out.println("l1 e l2 sono uguali, solo l1 viene aggiunto");
+
+        System.out.println("\nElementi nel Catalogo (Set) (" + catalogo.size() + "):");
+        for (Book libro : catalogo) {
+            System.out.println("Libro: " + libro.getCode() + " - " + libro.getTitle() + " - " + libro.getAuthor()  );
+        }
+        System.out.println(" ");
+
+
+
+
+
+
+
+
 
 
 
